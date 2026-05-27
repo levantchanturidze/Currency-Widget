@@ -1,14 +1,11 @@
 services:
   - type: web
     name: currency-widget-backend
-    runtime: node
+    runtime: docker
     rootDir: backend
-    buildCommand: npm install && npm run build
-    startCommand: npm start
+    dockerfilePath: ./Dockerfile
     envVars:
       - key: NODE_ENV
         value: production
-      - key: PORT
-        value: 3001
     healthCheckPath: /health
     autoDeploy: true

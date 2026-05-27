@@ -1,0 +1,72 @@
+/* ── Design tokens ── */
+:root {
+  --surface-1: #ffffff;
+  --surface-2: #f8f9fb;
+  --surface-hover: #f1f3f7;
+  --border: #e2e6ed;
+  --border-subtle: #eef0f4;
+  --border-strong: #c8cdd8;
+  --text-primary: #0f1117;
+  --text-secondary: #4b5563;
+  --text-muted: #9ca3af;
+
+  --skeleton-base: #f0f2f5;
+  --skeleton-highlight: #e4e7ec;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --surface-1: #111827;
+    --surface-2: #1a2235;
+    --surface-hover: #1f2d45;
+    --border: #2d3a4f;
+    --border-subtle: #1e2d42;
+    --border-strong: #3d4f68;
+    --text-primary: #f1f5f9;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+
+    --skeleton-base: #1e2d42;
+    --skeleton-highlight: #243349;
+  }
+}
+
+/* ── Reset ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--surface-2);
+  color: var(--text-primary);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100dvh;
+}
+
+/* ── Layout ── */
+.app {
+  min-height: 100dvh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 32px 16px 48px;
+  background: linear-gradient(135deg, #f0f4ff 0%, #faf0ff 100%);
+}
+
+@media (prefers-color-scheme: dark) {
+  .app {
+    background: linear-gradient(135deg, #0d1520 0%, #130f1e 100%);
+  }
+}
+
+.app > .rate-widget {
+  width: 100%;
+}
+
+/* ── Scrollbar styling ── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--border-strong); }

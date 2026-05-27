@@ -1,0 +1,237 @@
+.rate-widget {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* ── Header ── */
+
+.rate-widget__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 24px 28px 20px;
+  border-bottom: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+
+.rate-widget__title {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 4px;
+  letter-spacing: -0.3px;
+}
+
+.rate-widget__subtitle {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.rate-widget__controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.rate-widget__cache-badge {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: #7c3aed;
+  background: rgba(124, 58, 237, 0.1);
+  border: 1px solid rgba(124, 58, 237, 0.25);
+  padding: 2px 8px;
+  border-radius: 100px;
+}
+
+.rate-widget__refresh-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1px;
+}
+
+.rate-widget__updated,
+.rate-widget__countdown {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.rate-widget__countdown {
+  color: var(--text-secondary);
+}
+
+.rate-widget__refresh-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text-primary);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+  font-family: inherit;
+}
+
+.rate-widget__refresh-btn:hover:not(:disabled) {
+  background: var(--surface-hover);
+  border-color: var(--border-strong);
+}
+
+.rate-widget__refresh-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.refresh-icon {
+  font-size: 16px;
+  display: inline-block;
+  transition: transform 0.3s;
+}
+
+.refresh-icon--spinning {
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Source badges row ── */
+
+.rate-widget__sources {
+  display: flex;
+  gap: 10px;
+  padding: 16px 28px;
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--border);
+  overflow-x: auto;
+  flex-wrap: wrap;
+}
+
+/* ── Body ── */
+
+.rate-widget__body {
+  padding: 20px 28px 24px;
+}
+
+/* ── Stale warning ── */
+
+.rate-widget__stale-warning {
+  font-size: 12px;
+  color: #b45309;
+  background: rgba(180, 83, 9, 0.08);
+  border: 1px solid rgba(180, 83, 9, 0.2);
+  border-radius: 6px;
+  padding: 8px 12px;
+  margin-bottom: 16px;
+}
+
+/* ── Error banner ── */
+
+.error-banner {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px;
+  border-radius: 10px;
+  background: rgba(239, 68, 68, 0.06);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.error-banner__icon {
+  font-size: 24px;
+  flex-shrink: 0;
+  color: #ef4444;
+}
+
+.error-banner__body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+}
+
+.error-banner__body strong {
+  font-size: 14px;
+  color: var(--text-primary);
+}
+
+.error-banner__body span {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.error-banner__retry {
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  background: transparent;
+  color: #ef4444;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.15s;
+  flex-shrink: 0;
+}
+
+.error-banner__retry:hover {
+  background: rgba(239, 68, 68, 0.1);
+}
+
+/* ── Skeleton loader ── */
+
+.skeleton-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.skeleton {
+  background: linear-gradient(90deg, var(--skeleton-base) 25%, var(--skeleton-highlight) 50%, var(--skeleton-base) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+  border-radius: 8px;
+}
+
+.skeleton--title {
+  height: 24px;
+  width: 220px;
+}
+
+.skeleton-badges {
+  display: flex;
+  gap: 10px;
+}
+
+.skeleton--badge {
+  height: 60px;
+  width: 130px;
+  border-radius: 8px;
+}
+
+.skeleton--table {
+  height: 240px;
+  width: 100%;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}

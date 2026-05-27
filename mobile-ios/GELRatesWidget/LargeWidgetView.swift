@@ -1,7 +1,7 @@
 import SwiftUI
 import WidgetKit
 
-// Large (322×345 pt) — all 3 currencies with source labels and NBG reference
+// Large (322×345 pt) — full table: sources × currencies, both buy and sell
 struct LargeWidgetView: View {
     let entry: RateEntry
 
@@ -10,124 +10,140 @@ struct LargeWidgetView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             // Header
-            HStack(alignment: .lastTextBaseline) {
-                VStack(alignment: .leading, spacing: 2) {
+            HStack {
+                VStack(alignment: .leading, spacing: 1) {
                     Text("Georgian Exchange Rates")
-                        .font(.system(size: 14, weight: .bold))
-                    Text("Best buy & sell vs. GEL")
-                        .font(.system(size: 11))
+                        .font(.system(size: 13, weight: .bold))
+                    Text("GEL · All sources · Buy & Sell")
+                        .font(.system(size: 10))
                         .foregroundStyle(.secondary)
                 }
                 Spacer()
-                VStack(alignment: .trailing, spacing: 2) {
+                VStack(alignment: .trailing, spacing: 1) {
                     Text("Updated")
-                        .font(.system(size: 10))
+                        .font(.system(size: 9))
                         .foregroundStyle(.secondary)
                     Text(entry.date, style: .relative)
-                        .font(.system(size: 10, weight: .medium))
+                        .font(.system(size: 9, weight: .medium))
                         .foregroundStyle(.secondary)
-                        .frame(maxWidth: 72, alignment: .trailing)
+                        .frame(maxWidth: 60, alignment: .trailing)
                 }
             }
-            .padding(.horizontal, 14)
-            .padding(.top, 14)
-            .padding(.bottom, 10)
+            .padding(.horizontal, 12)
+            .padding(.top, 12)
+            .padding(.bottom, 8)
 
-            Divider().padding(.horizontal, 14)
+            Divider().padding(.horizontal, 12)
 
-            // Currency sections
-            ForEach(Array(codes.enumerated()), id: \.element) { idx, code in
-                if let snap = entry.snapshot.currency(code) {
-                    LargeCurrencySection(snapshot: snap)
-                    if idx < codes.count - 1 {
-                        Divider().padding(.horizontal, 14)
-                    }
-                }
+            // Column header: SOURCE | USD Buy Sell | EUR Buy Sell | GBP Buy Sell
+            LargeHeaderRow(codes: codes)
+                .padding(.horizontal, 12)
+                .padding(.vertical, 5)
+
+            Divider().padding(.horizontal, 12)
+
+            // Source rows
+            ForEach(Array(canonicalSourceOrder.enumerated()), id: \.element) { idx, source in
+                LargeSourceRow(source: source, codes: codes, snapshot: entry.snapshot)
+                    .padding(.horizontal, 12)
+                    .padding(.vertical, 5)
+                    .background(idx % 2 == 0 ? Color(.systemGray6).opacity(0.4) : Color.clear)
             }
 
             Spacer(minLength: 0)
+
+            // Legend
+            HStack(spacing: 12) {
+                Label("Best buy", systemImage: "arrow.up.circle.fill")
+                    .foregroundStyle(.green)
+                Label("Best sell", systemImage: "arrow.down.circle.fill")
+                    .foregroundStyle(.orange)
+                Spacer()
+                Text("NBG = reference rate")
+                    .foregroundStyle(.tertiary)
+            }
+            .font(.system(size: 8))
+            .padding(.horizontal, 12)
+            .padding(.bottom, 10)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
 
-private struct LargeCurrencySection: View {
-    let snapshot: CurrencySnapshot
+// MARK: - Header row
+
+private struct LargeHeaderRow: View {
+    let codes: [String]
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            // Row 1: currency code + NBG badge
-            HStack {
-                Text(snapshot.currency)
-                    .font(.system(size: 20, weight: .bold, design: .rounded))
-                Spacer()
-                if let nbg = snapshot.nbgRate {
-                    HStack(spacing: 3) {
-                        Text("NBG")
-                            .font(.system(size: 10, weight: .semibold))
-                            .foregroundStyle(.secondary)
-                        Text(String(format: "%.3f", nbg))
-                            .font(.system(size: 10, design: .monospaced).weight(.medium))
-                            .foregroundStyle(.secondary)
+        HStack(spacing: 0) {
+            Text("SOURCE")
+                .frame(width: 42, alignment: .leading)
+            ForEach(codes, id: \.self) { code in
+                VStack(spacing: 0) {
+                    Text(code)
+                        .font(.system(size: 10, weight: .bold))
+                    HStack(spacing: 0) {
+                        Text("Buy")
+                            .frame(maxWidth: .infinity)
+                        Text("Sell")
+                            .frame(maxWidth: .infinity)
                     }
-                    .padding(.horizontal, 7)
-                    .padding(.vertical, 3)
-                    .background(Color(.systemGray5))
-                    .clipShape(Capsule())
+                    .font(.system(size: 8))
+                    .foregroundStyle(.secondary)
                 }
-            }
-
-            // Row 2: buy and sell cards side by side
-            HStack(spacing: 12) {
-                LargeRateCard(
-                    label: "Best Buy",
-                    value: snapshot.formattedBuy,
-                    source: snapshot.bestBuySource ?? "—",
-                    color: .green,
-                    icon: "arrow.up.circle.fill"
-                )
-                LargeRateCard(
-                    label: "Best Sell",
-                    value: snapshot.formattedSell,
-                    source: snapshot.bestSellSource ?? "—",
-                    color: .orange,
-                    icon: "arrow.down.circle.fill"
-                )
+                .frame(maxWidth: .infinity)
             }
         }
-        .padding(.horizontal, 14)
-        .padding(.vertical, 12)
+        .font(.system(size: 9, weight: .semibold))
+        .foregroundStyle(.secondary)
     }
 }
 
-private struct LargeRateCard: View {
-    let label: String
-    let value: String
-    let source: String
-    let color: Color
-    let icon: String
+// MARK: - Currency cell
+
+private struct LargeCurrencyCell: View {
+    let rate: SourceRate?
+    let isNBG: Bool
 
     var body: some View {
-        HStack(spacing: 8) {
-            Image(systemName: icon)
-                .font(.system(size: 22))
-                .foregroundStyle(color)
+        HStack(spacing: 0) {
+            Text(rate?.formattedBuy ?? "—")
+                .font(.system(size: 9, design: .monospaced).weight(rate?.isBestBuy == true ? .bold : .regular))
+                .foregroundStyle(isNBG ? Color.secondary : rate?.isBestBuy == true ? Color.green : Color.primary)
+                .frame(maxWidth: .infinity)
 
-            VStack(alignment: .leading, spacing: 1) {
-                Text(label)
-                    .font(.system(size: 10))
-                    .foregroundStyle(.secondary)
-                Text(value)
-                    .font(.system(size: 18, design: .monospaced).weight(.bold))
-                    .foregroundStyle(color)
-                Text(source)
-                    .font(.system(size: 10, weight: .medium))
-                    .foregroundStyle(.secondary)
+            Text(isNBG ? "ref" : (rate?.formattedSell ?? "—"))
+                .font(.system(size: 9, design: .monospaced).weight(rate?.isBestSell == true ? .bold : .regular))
+                .foregroundStyle(isNBG ? Color.secondary.opacity(0.5) : rate?.isBestSell == true ? Color.orange : Color.primary)
+                .frame(maxWidth: .infinity)
+        }
+        .frame(maxWidth: .infinity)
+    }
+}
+
+// MARK: - Source row
+
+private struct LargeSourceRow: View {
+    let source: String
+    let codes: [String]
+    let snapshot: RatesSnapshot
+
+    var body: some View {
+        HStack(spacing: 0) {
+            // Source label
+            Text(source)
+                .font(.system(size: 9, weight: .bold, design: .monospaced))
+                .foregroundStyle(.secondary)
+                .frame(width: 42, alignment: .leading)
+
+            // Buy + Sell per currency
+            ForEach(codes, id: \.self) { code in
+                LargeCurrencyCell(
+                    rate: snapshot.currency(code)?.sourceRates.first { $0.source == source },
+                    isNBG: source == "NBG"
+                )
             }
         }
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .padding(10)
-        .background(color.opacity(0.08))
-        .clipShape(RoundedRectangle(cornerRadius: 10))
     }
 }

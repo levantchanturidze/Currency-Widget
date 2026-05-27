@@ -21,9 +21,7 @@ actor RatesAPI {
 
     // Simulator: http://localhost:3001
     // Real device: replace with your Mac's LAN IP, e.g. http://192.168.1.X:3001
-    // Production: your deployed backend URL
     private let backendURL = "http://localhost:3001"
-
     private let targetCurrencies = ["USD", "EUR", "GBP"]
 
     func fetchSnapshot() async throws -> RatesSnapshot {
@@ -47,30 +45,36 @@ actor RatesAPI {
             throw APIError.badStatus(http.statusCode)
         }
 
-        let apiResponse: APIResponse
         do {
-            apiResponse = try JSONDecoder().decode(APIResponse.self, from: data)
+            return transform(try JSONDecoder().decode(APIResponse.self, from: data))
         } catch {
             throw APIError.decoding(error)
         }
-
-        return transform(apiResponse)
     }
 
     private func transform(_ response: APIResponse) -> RatesSnapshot {
         let items = targetCurrencies.map { code -> CurrencySnapshot in
-            let rates     = response.rates.filter { $0.currency == code }
-            let bestBuy   = rates.first { $0.isBestBuy }
-            let bestSell  = rates.first { $0.isBestSell }
-            let nbg       = rates.first { $0.source == "NBG" }
+            let rates    = response.rates.filter { $0.currency == code }
+            let bestBuy  = rates.first { $0.isBestBuy }
+            let bestSell = rates.first { $0.isBestSell }
+
+            let sourceRates = rates.map { r in
+                SourceRate(
+                    source:     r.source,
+                    buy:        r.buy,
+                    sell:       r.sell,
+                    isBestBuy:  r.isBestBuy,
+                    isBestSell: r.isBestSell
+                )
+            }
 
             return CurrencySnapshot(
-                currency:        code,
-                bestBuy:         bestBuy?.buy,
-                bestBuySource:   bestBuy?.source,
-                bestSell:        bestSell?.sell,
-                bestSellSource:  bestSell?.source,
-                nbgRate:         nbg?.buy
+                currency:       code,
+                sourceRates:    sourceRates.sorted,
+                bestBuy:        bestBuy?.buy,
+                bestBuySource:  bestBuy?.source,
+                bestSell:       bestSell?.sell,
+                bestSellSource: bestSell?.source
             )
         }
 

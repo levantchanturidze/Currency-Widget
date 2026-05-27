@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: currency-widget-backend
+    runtime: node
+    rootDir: backend
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3001
+    healthCheckPath: /health
+    autoDeploy: true

@@ -32,8 +32,8 @@ struct SourceRate: Codable, Identifiable {
     let isBestSell: Bool
 
     var isNBG: Bool { source == "NBG" }
-    var formattedBuy: String  { buy.map  { String(format: "%.3f", $0) } ?? "—" }
-    var formattedSell: String { sell.map { String(format: "%.3f", $0) } ?? "—" }
+    var formattedBuy: String  { buy.map  { String(format: "%.4f", $0) } ?? "—" }
+    var formattedSell: String { sell.map { String(format: "%.4f", $0) } ?? "—" }
 }
 
 struct CurrencySnapshot: Codable {
@@ -45,9 +45,9 @@ struct CurrencySnapshot: Codable {
     let bestSellSource: String?
 
     var nbgRate: Double? { sourceRates.first { $0.source == "NBG" }?.buy }
-    var formattedBuy: String  { bestBuy.map  { String(format: "%.3f", $0) } ?? "—" }
-    var formattedSell: String { bestSell.map { String(format: "%.3f", $0) } ?? "—" }
-    var formattedNBG: String  { nbgRate.map  { String(format: "%.3f", $0) } ?? "—" }
+    var formattedBuy: String  { bestBuy.map  { String(format: "%.4f", $0) } ?? "—" }
+    var formattedSell: String { bestSell.map { String(format: "%.4f", $0) } ?? "—" }
+    var formattedNBG: String  { nbgRate.map  { String(format: "%.4f", $0) } ?? "—" }
 }
 
 struct RatesSnapshot: Codable {

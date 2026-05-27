@@ -12,9 +12,7 @@ const PORT = parseInt(process.env.PORT ?? '3001', 10);
 
 app.use(
   cors({
-    origin: process.env.NODE_ENV === 'production'
-      ? (process.env.ALLOWED_ORIGIN ?? 'http://localhost:5173')
-      : '*',
+    origin: process.env.ALLOWED_ORIGIN ?? '*',
     methods: ['GET', 'POST'],
   }),
 );

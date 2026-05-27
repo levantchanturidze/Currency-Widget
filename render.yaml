@@ -2,8 +2,9 @@ services:
   - type: web
     name: currency-widget-backend
     runtime: docker
-    rootDir: backend
+    rootDir: ./backend
     dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
     envVars:
       - key: NODE_ENV
         value: production

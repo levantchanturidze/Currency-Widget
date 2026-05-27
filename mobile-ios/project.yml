@@ -8,6 +8,8 @@ options:
 settings:
   base:
     SWIFT_VERSION: "5.9"
+    DEVELOPMENT_TEAM: P3C867TH36
+    CODE_SIGN_STYLE: Automatic
 
 targets:
   GELRatesApp:

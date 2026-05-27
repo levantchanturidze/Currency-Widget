@@ -19,9 +19,7 @@ enum APIError: LocalizedError {
 actor RatesAPI {
     static let shared = RatesAPI()
 
-    // Simulator: http://localhost:3001
-    // Real device: http://192.168.7.135:3001
-    private let backendURL = "http://192.168.7.135:3001"
+    private let backendURL = "https://currency-widget-qtso.onrender.com"
     private let targetCurrencies = ["USD", "EUR", "GBP"]
 
     func fetchSnapshot() async throws -> RatesSnapshot {

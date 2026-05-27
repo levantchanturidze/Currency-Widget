@@ -1,33 +1,26 @@
 import SwiftUI
 import WidgetKit
 
-// Medium (322×155 pt) — matrix: sources as rows, currencies as columns, buy rates
+// Medium (322×155 pt) — buy-rate matrix: sources as rows, currencies as columns
 struct MediumWidgetView: View {
     let entry: RateEntry
-
     private let codes = ["USD", "EUR", "GBP"]
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 4) {
-            // Header
-            HStack {
-                HStack(spacing: 4) {
-                    Image(systemName: "chart.line.uptrend.xyaxis")
-                        .font(.system(size: 10, weight: .semibold))
-                    Text("GEL Exchange Rates")
-                        .font(.system(size: 11, weight: .semibold))
-                }
-                .foregroundStyle(.secondary)
-                Spacer()
-                Text(entry.date, style: .relative)
-                    .font(.system(size: 9))
-                    .foregroundStyle(.tertiary)
-                    .frame(maxWidth: 60, alignment: .trailing)
-            }
+        VStack(alignment: .leading, spacing: 0) {
 
-            Divider()
+            // ── Header ──────────────────────────────────────────────────
+            WidgetHeaderView(
+                title: "GEL Exchange Rates",
+                date: entry.date,
+                subtitle: "Best buy ↑ highlighted green"
+            )
+            .padding(.bottom, 6)
 
-            // Currency header row
+            ThinDivider()
+                .padding(.bottom, 5)
+
+            // ── Currency column headers ──────────────────────────────────
             HStack(spacing: 0) {
                 Text("SOURCE")
                     .frame(width: 46, alignment: .leading)
@@ -36,54 +29,59 @@ struct MediumWidgetView: View {
                         .frame(maxWidth: .infinity)
                 }
             }
-            .font(.system(size: 9, weight: .bold))
+            .font(.system(size: 8, weight: .bold))
             .foregroundStyle(.secondary)
+            .padding(.bottom, 4)
 
-            // Source rows (buy rates)
-            ForEach(canonicalSourceOrder, id: \.self) { source in
-                MediumSourceRow(source: source, codes: codes, snapshot: entry.snapshot)
+            // ── Source rows ──────────────────────────────────────────────
+            VStack(spacing: 3) {
+                ForEach(canonicalSourceOrder, id: \.self) { source in
+                    MediumRow(source: source, codes: codes, snapshot: entry.snapshot)
+                }
             }
 
             Spacer(minLength: 0)
         }
-        .padding(.horizontal, 12)
-        .padding(.vertical, 10)
+        .padding(.horizontal, 14)
+        .padding(.vertical, 12)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
 
-private struct MediumSourceRow: View {
+private struct MediumRow: View {
     let source: String
     let codes: [String]
     let snapshot: RatesSnapshot
 
     var body: some View {
         HStack(spacing: 0) {
-            // Source label
-            Text(source)
-                .font(.system(size: 9, weight: .semibold, design: .monospaced))
-                .foregroundStyle(.secondary)
-                .frame(width: 46, alignment: .leading)
+            SourceTag(name: source, width: 46, size: 9)
 
-            // Buy rate per currency
             ForEach(codes, id: \.self) { code in
-                let rate = snapshot.currency(code)?.sourceRates.first { $0.source == source }
-                let isBest = rate?.isBestBuy ?? false
-                let isNBG = source == "NBG"
-
-                Text(rate?.formattedBuy ?? "—")
-                    .font(.system(size: 10, design: .monospaced).weight(isBest ? .bold : .regular))
-                    .foregroundStyle(isNBG ? Color.secondary : isBest ? Color.green : Color.primary)
-                    .frame(maxWidth: .infinity)
-                    .overlay(alignment: .topTrailing) {
-                        if isBest {
-                            Image(systemName: "star.fill")
-                                .font(.system(size: 5))
-                                .foregroundStyle(.green)
-                                .offset(x: 1, y: -1)
-                        }
-                    }
+                MediumCell(
+                    rate: snapshot.currency(code)?.sourceRates.first { $0.source == source },
+                    isNBG: source == "NBG"
+                )
             }
         }
+    }
+}
+
+private struct MediumCell: View {
+    let rate: SourceRate?
+    let isNBG: Bool
+
+    var body: some View {
+        HStack {
+            Spacer(minLength: 0)
+            RateChip(
+                text:   isNBG ? (rate?.formattedBuy ?? "—") : (rate?.formattedBuy ?? "—"),
+                isBest: rate?.isBestBuy == true,
+                isRef:  isNBG,
+                isBuy:  true
+            )
+            Spacer(minLength: 0)
+        }
+        .frame(maxWidth: .infinity)
     }
 }

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		077DEBA0EA379498AFEEB705 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC85B7FED3D43E92001B9FE /* App.swift */; };
+		414AA0A5999DF40A2198126B /* WidgetComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0236A37D000C4B1A0213A9 /* WidgetComponents.swift */; };
 		5D0F79D282BC51B7777CEE68 /* LargeWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971B45E7E92F7AC1C81FF91A /* LargeWidgetView.swift */; };
 		624B60311E2A26C3ACAF4411 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0572E81FDC9B5DFDA09833E /* Models.swift */; };
 		725D8C3A8507567B3FD13D4B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0DE50B84D05DE933ED6F44 /* ContentView.swift */; };
@@ -47,6 +48,7 @@
 
 /* Begin PBXFileReference section */
 		1C484F99A01D3AE21C69D18B /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		1F0236A37D000C4B1A0213A9 /* WidgetComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetComponents.swift; sourceTree = "<group>"; };
 		26DA1C39D606F3EBBF960763 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		3FC85B7FED3D43E92001B9FE /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		7E2BEDA3CE9C1152E90152C1 /* Entry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 				DCF2E0BC260D524B7EE02496 /* Provider.swift */,
 				FB9AE721CB4B8B1B47EF1297 /* SmallWidgetView.swift */,
 				AB61DEFFA4B1699855D818A3 /* Widget.swift */,
+				1F0236A37D000C4B1A0213A9 /* WidgetComponents.swift */,
 			);
 			path = GELRatesWidget;
 			sourceTree = "<group>";
@@ -198,6 +201,7 @@
 				7A850F13EDB74014D5A74341 /* Provider.swift in Sources */,
 				DCEBA06C9DE7F8934ABCAA3E /* SmallWidgetView.swift in Sources */,
 				BAD3E853BE7A30783480961A /* Widget.swift in Sources */,
+				414AA0A5999DF40A2198126B /* WidgetComponents.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

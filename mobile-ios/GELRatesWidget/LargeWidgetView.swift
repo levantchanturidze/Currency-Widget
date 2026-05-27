@@ -1,124 +1,103 @@
 import SwiftUI
 import WidgetKit
 
-// Large (322×345 pt) — full table: sources × currencies, both buy and sell
+// Large (322×345 pt) — full comparison table: 5 sources × 3 currencies × buy + sell
 struct LargeWidgetView: View {
     let entry: RateEntry
-
     private let codes = ["USD", "EUR", "GBP"]
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            // Header
-            HStack {
-                VStack(alignment: .leading, spacing: 1) {
-                    Text("Georgian Exchange Rates")
-                        .font(.system(size: 13, weight: .bold))
-                    Text("GEL · All sources · Buy & Sell")
-                        .font(.system(size: 10))
-                        .foregroundStyle(.secondary)
-                }
-                Spacer()
-                VStack(alignment: .trailing, spacing: 1) {
-                    Text("Updated")
-                        .font(.system(size: 9))
-                        .foregroundStyle(.secondary)
-                    Text(entry.date, style: .relative)
-                        .font(.system(size: 9, weight: .medium))
-                        .foregroundStyle(.secondary)
-                        .frame(maxWidth: 60, alignment: .trailing)
-                }
-            }
-            .padding(.horizontal, 12)
-            .padding(.top, 12)
-            .padding(.bottom, 8)
 
-            Divider().padding(.horizontal, 12)
+            // ── Header ──────────────────────────────────────────────────
+            WidgetHeaderView(
+                title: "Georgian Exchange Rates",
+                date: entry.date,
+                subtitle: "USD · EUR · GBP  ·  All 5 sources"
+            )
+            .padding(.horizontal, 14)
+            .padding(.top, 13)
+            .padding(.bottom, 9)
 
-            // Column header: SOURCE | USD Buy Sell | EUR Buy Sell | GBP Buy Sell
-            LargeHeaderRow(codes: codes)
-                .padding(.horizontal, 12)
-                .padding(.vertical, 5)
+            ThinDivider().padding(.horizontal, 14)
 
-            Divider().padding(.horizontal, 12)
+            // ── Column header ────────────────────────────────────────────
+            LargeColumnHeader(codes: codes)
+                .padding(.horizontal, 14)
+                .padding(.vertical, 6)
 
-            // Source rows
+            ThinDivider().padding(.horizontal, 14)
+
+            // ── Source rows ──────────────────────────────────────────────
             ForEach(Array(canonicalSourceOrder.enumerated()), id: \.element) { idx, source in
                 LargeSourceRow(source: source, codes: codes, snapshot: entry.snapshot)
-                    .padding(.horizontal, 12)
-                    .padding(.vertical, 5)
-                    .background(idx % 2 == 0 ? Color(.systemGray6).opacity(0.4) : Color.clear)
+                    .padding(.horizontal, 14)
+                    .padding(.vertical, 7)
+                    .background(
+                        idx % 2 == 0
+                            ? Color(.systemGray6).opacity(0.5)
+                            : Color.clear
+                    )
             }
 
             Spacer(minLength: 0)
 
-            // Legend
-            HStack(spacing: 12) {
-                Label("Best buy", systemImage: "arrow.up.circle.fill")
-                    .foregroundStyle(.green)
-                Label("Best sell", systemImage: "arrow.down.circle.fill")
-                    .foregroundStyle(.orange)
+            // ── Legend ───────────────────────────────────────────────────
+            ThinDivider(opacity: 0.1).padding(.horizontal, 14)
+            HStack(spacing: 10) {
+                HStack(spacing: 3) {
+                    Circle().fill(WT.buy).frame(width: 5, height: 5)
+                    Text("Best buy")
+                }
+                HStack(spacing: 3) {
+                    Circle().fill(WT.sell).frame(width: 5, height: 5)
+                    Text("Best sell")
+                }
                 Spacer()
-                Text("NBG = reference rate")
-                    .foregroundStyle(.tertiary)
+                HStack(spacing: 3) {
+                    Circle().fill(WT.ref).frame(width: 5, height: 5)
+                    Text("NBG reference")
+                }
             }
-            .font(.system(size: 8))
-            .padding(.horizontal, 12)
-            .padding(.bottom, 10)
+            .font(WT.legend)
+            .foregroundStyle(.secondary)
+            .padding(.horizontal, 14)
+            .padding(.vertical, 9)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
 
-// MARK: - Header row
+// MARK: - Column header
 
-private struct LargeHeaderRow: View {
+private struct LargeColumnHeader: View {
     let codes: [String]
 
     var body: some View {
         HStack(spacing: 0) {
             Text("SOURCE")
-                .frame(width: 42, alignment: .leading)
+                .frame(width: 44, alignment: .leading)
+
             ForEach(codes, id: \.self) { code in
-                VStack(spacing: 0) {
+                VStack(spacing: 2) {
                     Text(code)
                         .font(.system(size: 10, weight: .bold))
+                        .foregroundStyle(.primary)
                     HStack(spacing: 0) {
-                        Text("Buy")
+                        Text("↑ Buy")
+                            .foregroundStyle(WT.buy.opacity(0.8))
                             .frame(maxWidth: .infinity)
-                        Text("Sell")
+                        Text("↓ Sell")
+                            .foregroundStyle(WT.sell.opacity(0.8))
                             .frame(maxWidth: .infinity)
                     }
-                    .font(.system(size: 8))
-                    .foregroundStyle(.secondary)
+                    .font(.system(size: 7, weight: .bold))
                 }
                 .frame(maxWidth: .infinity)
             }
         }
-        .font(.system(size: 9, weight: .semibold))
+        .font(.system(size: 7, weight: .bold))
         .foregroundStyle(.secondary)
-    }
-}
-
-// MARK: - Currency cell
-
-private struct LargeCurrencyCell: View {
-    let rate: SourceRate?
-    let isNBG: Bool
-
-    var body: some View {
-        HStack(spacing: 0) {
-            Text(rate?.formattedBuy ?? "—")
-                .font(.system(size: 9, design: .monospaced).weight(rate?.isBestBuy == true ? .bold : .regular))
-                .foregroundStyle(isNBG ? Color.secondary : rate?.isBestBuy == true ? Color.green : Color.primary)
-                .frame(maxWidth: .infinity)
-
-            Text(isNBG ? "ref" : (rate?.formattedSell ?? "—"))
-                .font(.system(size: 9, design: .monospaced).weight(rate?.isBestSell == true ? .bold : .regular))
-                .foregroundStyle(isNBG ? Color.secondary.opacity(0.5) : rate?.isBestSell == true ? Color.orange : Color.primary)
-                .frame(maxWidth: .infinity)
-        }
-        .frame(maxWidth: .infinity)
     }
 }
 
@@ -129,21 +108,63 @@ private struct LargeSourceRow: View {
     let codes: [String]
     let snapshot: RatesSnapshot
 
+    var accentColor: Color? {
+        let rates = codes.compactMap { snapshot.currency($0)?.sourceRates.first { $0.source == source } }
+        if rates.contains(where: { $0.isBestBuy  }) { return WT.buy  }
+        if rates.contains(where: { $0.isBestSell }) { return WT.sell }
+        return nil
+    }
+
     var body: some View {
         HStack(spacing: 0) {
-            // Source label
-            Text(source)
-                .font(.system(size: 9, weight: .bold, design: .monospaced))
-                .foregroundStyle(.secondary)
-                .frame(width: 42, alignment: .leading)
+            SourceTag(name: source, width: 44, accent: accentColor, size: 9)
 
-            // Buy + Sell per currency
             ForEach(codes, id: \.self) { code in
-                LargeCurrencyCell(
+                LargePair(
                     rate: snapshot.currency(code)?.sourceRates.first { $0.source == source },
                     isNBG: source == "NBG"
                 )
             }
         }
+    }
+}
+
+// MARK: - Buy/Sell pair cell
+
+private struct LargePair: View {
+    let rate: SourceRate?
+    let isNBG: Bool
+
+    var body: some View {
+        HStack(spacing: 0) {
+            // Buy
+            Group {
+                Spacer(minLength: 0)
+                RateChip(
+                    text:   rate?.formattedBuy ?? "—",
+                    isBest: rate?.isBestBuy == true,
+                    isRef:  isNBG,
+                    isBuy:  true,
+                    large:  true
+                )
+                Spacer(minLength: 0)
+            }
+            .frame(maxWidth: .infinity)
+
+            // Sell
+            Group {
+                Spacer(minLength: 0)
+                RateChip(
+                    text:   isNBG ? "ref" : (rate?.formattedSell ?? "—"),
+                    isBest: !isNBG && rate?.isBestSell == true,
+                    isRef:  isNBG,
+                    isBuy:  false,
+                    large:  true
+                )
+                Spacer(minLength: 0)
+            }
+            .frame(maxWidth: .infinity)
+        }
+        .frame(maxWidth: .infinity)
     }
 }

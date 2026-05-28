@@ -35,7 +35,7 @@ struct LargeWidgetView: View {
                     .padding(.vertical, 7)
                     .background(
                         idx % 2 == 0
-                            ? Color(.systemGray6).opacity(0.5)
+                            ? Color.primary.opacity(0.04)
                             : Color.clear
                     )
             }

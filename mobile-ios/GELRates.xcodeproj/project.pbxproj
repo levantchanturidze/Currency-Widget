@@ -8,18 +8,32 @@
 
 /* Begin PBXBuildFile section */
 		077DEBA0EA379498AFEEB705 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC85B7FED3D43E92001B9FE /* App.swift */; };
+		0B4112E32051A84CCA1C8F8C /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31866398A0C89C498C539A42 /* App.swift */; };
+		14DB0B79454DE64DBE42479F /* MediumWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F511B3CE98EBD3EEC304710A /* MediumWidgetView.swift */; };
+		1DA8770FA666CAD5278EB63D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDA56C7A4A1644E3ABC58DF /* ContentView.swift */; };
+		2007EA346C51CFA66FF376B2 /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF2E0BC260D524B7EE02496 /* Provider.swift */; };
+		2EE80D99C49131C143EE8CB4 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C484F99A01D3AE21C69D18B /* APIService.swift */; };
 		414AA0A5999DF40A2198126B /* WidgetComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0236A37D000C4B1A0213A9 /* WidgetComponents.swift */; };
 		5D0F79D282BC51B7777CEE68 /* LargeWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971B45E7E92F7AC1C81FF91A /* LargeWidgetView.swift */; };
 		624B60311E2A26C3ACAF4411 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0572E81FDC9B5DFDA09833E /* Models.swift */; };
 		725D8C3A8507567B3FD13D4B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0DE50B84D05DE933ED6F44 /* ContentView.swift */; };
+		732E712276E9D18ECB8E720B /* SmallWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9AE721CB4B8B1B47EF1297 /* SmallWidgetView.swift */; };
 		734C9F3E26AB28F14901303D /* MediumWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F511B3CE98EBD3EEC304710A /* MediumWidgetView.swift */; };
 		7A850F13EDB74014D5A74341 /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF2E0BC260D524B7EE02496 /* Provider.swift */; };
+		7B7B5E7BAFF643FA8A55400C /* Widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB61DEFFA4B1699855D818A3 /* Widget.swift */; };
 		86EC4C0EBCC35ACA853BBA04 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C484F99A01D3AE21C69D18B /* APIService.swift */; };
+		8B28C798EBD97CD8B6EB5A74 /* WidgetComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0236A37D000C4B1A0213A9 /* WidgetComponents.swift */; };
 		A39BD833552C9B8A9EC984B0 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0572E81FDC9B5DFDA09833E /* Models.swift */; };
+		A576F17A750324270AC4B365 /* LargeWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971B45E7E92F7AC1C81FF91A /* LargeWidgetView.swift */; };
 		B02A4C17F84F73C6693710A1 /* GELRatesWidget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = CA8CADBA28F73FC1890A0B9D /* GELRatesWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		B9F36C472828F3E5D193591F /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E2BEDA3CE9C1152E90152C1 /* Entry.swift */; };
 		BAD3E853BE7A30783480961A /* Widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB61DEFFA4B1699855D818A3 /* Widget.swift */; };
+		BC42D4CF1143A3CB2475B058 /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E2BEDA3CE9C1152E90152C1 /* Entry.swift */; };
+		BCA65EA530A2D543AA7AE150 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0572E81FDC9B5DFDA09833E /* Models.swift */; };
+		C81EA02526145A750C3B801B /* GELRatesMacWidget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = C1D7721FC330BD4BF478D6F8 /* GELRatesMacWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		D270C5C1917C8C120F6743BB /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 26DA1C39D606F3EBBF960763 /* Info.plist */; };
 		DCEBA06C9DE7F8934ABCAA3E /* SmallWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9AE721CB4B8B1B47EF1297 /* SmallWidgetView.swift */; };
+		EE6A2674C189866EBEDC3390 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0572E81FDC9B5DFDA09833E /* Models.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,9 +44,27 @@
 			remoteGlobalIDString = 2AD70EB2228E28F9CD65BCC7;
 			remoteInfo = GELRatesWidget;
 		};
+		46DFCCEB6D4CF0CAEBC82F56 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7B16A3B6237A6A7A519B5B28 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1420C43BE41AD829015E6672;
+			remoteInfo = GELRatesMacWidget;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		B5AB7C1B68A8B24FD71F4B01 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				C81EA02526145A750C3B801B /* GELRatesMacWidget.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E5FE977983587912D0D00578 /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -47,9 +79,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1458D45C7E92C49166D5D73F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		1C484F99A01D3AE21C69D18B /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		1F0236A37D000C4B1A0213A9 /* WidgetComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetComponents.swift; sourceTree = "<group>"; };
 		26DA1C39D606F3EBBF960763 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		31866398A0C89C498C539A42 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		3FC85B7FED3D43E92001B9FE /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		7E2BEDA3CE9C1152E90152C1 /* Entry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = "<group>"; };
 		971B45E7E92F7AC1C81FF91A /* LargeWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeWidgetView.swift; sourceTree = "<group>"; };
@@ -57,8 +91,11 @@
 		A0572E81FDC9B5DFDA09833E /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		AB61DEFFA4B1699855D818A3 /* Widget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Widget.swift; sourceTree = "<group>"; };
 		AF0DE50B84D05DE933ED6F44 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		C1D7721FC330BD4BF478D6F8 /* GELRatesMacWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = GELRatesMacWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		C1F4A986A8F989E33977C6AE /* GELRatesMacApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GELRatesMacApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA8CADBA28F73FC1890A0B9D /* GELRatesWidget.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = GELRatesWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCF2E0BC260D524B7EE02496 /* Provider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
+		DDDA56C7A4A1644E3ABC58DF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E9689E7C37DF42F9FAD45FB6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		F511B3CE98EBD3EEC304710A /* MediumWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediumWidgetView.swift; sourceTree = "<group>"; };
 		FB9AE721CB4B8B1B47EF1297 /* SmallWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallWidgetView.swift; sourceTree = "<group>"; };
@@ -87,9 +124,21 @@
 			isa = PBXGroup;
 			children = (
 				9D074AC4724B53BDEA9816AD /* GELRatesApp.app */,
+				C1F4A986A8F989E33977C6AE /* GELRatesMacApp.app */,
+				C1D7721FC330BD4BF478D6F8 /* GELRatesMacWidget.appex */,
 				CA8CADBA28F73FC1890A0B9D /* GELRatesWidget.appex */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		88D500ED23CB0AB0C7154013 /* GELRatesMacApp */ = {
+			isa = PBXGroup;
+			children = (
+				31866398A0C89C498C539A42 /* App.swift */,
+				DDDA56C7A4A1644E3ABC58DF /* ContentView.swift */,
+				1458D45C7E92C49166D5D73F /* Info.plist */,
+			);
+			path = GELRatesMacApp;
 			sourceTree = "<group>";
 		};
 		92BA6F4E5E1ED1F1EF058C26 /* GELRatesWidget */ = {
@@ -112,6 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				3CFB57015E4F7FFDA6917AB6 /* GELRatesApp */,
+				88D500ED23CB0AB0C7154013 /* GELRatesMacApp */,
 				92BA6F4E5E1ED1F1EF058C26 /* GELRatesWidget */,
 				4AC0ADC2769C5CCE21F4A713 /* Shared */,
 				7D75331F4EA2515920AF0B99 /* Products */,
@@ -140,6 +190,24 @@
 			productReference = 9D074AC4724B53BDEA9816AD /* GELRatesApp.app */;
 			productType = "com.apple.product-type.application";
 		};
+		1420C43BE41AD829015E6672 /* GELRatesMacWidget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 87D45A92854CB8D87C1B4091 /* Build configuration list for PBXNativeTarget "GELRatesMacWidget" */;
+			buildPhases = (
+				58F9FADE267F423DFD9912E6 /* Sources */,
+				E36BBABA49A1D8643B77D538 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GELRatesMacWidget;
+			packageProductDependencies = (
+			);
+			productName = GELRatesMacWidget;
+			productReference = C1D7721FC330BD4BF478D6F8 /* GELRatesMacWidget.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		2AD70EB2228E28F9CD65BCC7 /* GELRatesWidget */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = CF66CD36627362A550E88858 /* Build configuration list for PBXNativeTarget "GELRatesWidget" */;
@@ -157,6 +225,25 @@
 			productReference = CA8CADBA28F73FC1890A0B9D /* GELRatesWidget.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
+		ABD265B7D85FBC1629733C7C /* GELRatesMacApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 50E2F7DB12E413F836965C1C /* Build configuration list for PBXNativeTarget "GELRatesMacApp" */;
+			buildPhases = (
+				CBACE1288D1403E488C23914 /* Sources */,
+				B5AB7C1B68A8B24FD71F4B01 /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				96F60D9EA95FD03700F42B7C /* PBXTargetDependency */,
+			);
+			name = GELRatesMacApp;
+			packageProductDependencies = (
+			);
+			productName = GELRatesMacApp;
+			productReference = C1F4A986A8F989E33977C6AE /* GELRatesMacApp.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -170,7 +257,15 @@
 						DevelopmentTeam = P3C867TH36;
 						ProvisioningStyle = Automatic;
 					};
+					1420C43BE41AD829015E6672 = {
+						DevelopmentTeam = P3C867TH36;
+						ProvisioningStyle = Automatic;
+					};
 					2AD70EB2228E28F9CD65BCC7 = {
+						DevelopmentTeam = P3C867TH36;
+						ProvisioningStyle = Automatic;
+					};
+					ABD265B7D85FBC1629733C7C = {
 						DevelopmentTeam = P3C867TH36;
 						ProvisioningStyle = Automatic;
 					};
@@ -191,10 +286,23 @@
 			projectRoot = "";
 			targets = (
 				084C888D9A216FFA33F453E9 /* GELRatesApp */,
+				ABD265B7D85FBC1629733C7C /* GELRatesMacApp */,
+				1420C43BE41AD829015E6672 /* GELRatesMacWidget */,
 				2AD70EB2228E28F9CD65BCC7 /* GELRatesWidget */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E36BBABA49A1D8643B77D538 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D270C5C1917C8C120F6743BB /* Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		2801CAA76AECB6CD64CAADD7 /* Sources */ = {
@@ -213,6 +321,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		58F9FADE267F423DFD9912E6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2EE80D99C49131C143EE8CB4 /* APIService.swift in Sources */,
+				BC42D4CF1143A3CB2475B058 /* Entry.swift in Sources */,
+				A576F17A750324270AC4B365 /* LargeWidgetView.swift in Sources */,
+				14DB0B79454DE64DBE42479F /* MediumWidgetView.swift in Sources */,
+				EE6A2674C189866EBEDC3390 /* Models.swift in Sources */,
+				2007EA346C51CFA66FF376B2 /* Provider.swift in Sources */,
+				732E712276E9D18ECB8E720B /* SmallWidgetView.swift in Sources */,
+				7B7B5E7BAFF643FA8A55400C /* Widget.swift in Sources */,
+				8B28C798EBD97CD8B6EB5A74 /* WidgetComponents.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7955A569794A445D45117A8E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -223,9 +347,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CBACE1288D1403E488C23914 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0B4112E32051A84CCA1C8F8C /* App.swift in Sources */,
+				1DA8770FA666CAD5278EB63D /* ContentView.swift in Sources */,
+				BCA65EA530A2D543AA7AE150 /* Models.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		96F60D9EA95FD03700F42B7C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1420C43BE41AD829015E6672 /* GELRatesMacWidget */;
+			targetProxy = 46DFCCEB6D4CF0CAEBC82F56 /* PBXContainerItemProxy */;
+		};
 		F399A1DC37BF8838F11157B7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 2AD70EB2228E28F9CD65BCC7 /* GELRatesWidget */;
@@ -287,12 +426,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.9;
@@ -318,6 +455,42 @@
 			};
 			name = Debug;
 		};
+		3EA8C55A118EDD99F231103A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				INFOPLIST_FILE = GELRatesMacApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.levan.GELRatesMacApp;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		8F17F10C20A1BE20B850A269 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				INFOPLIST_FILE = GELRatesMacWidget/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.levan.GELRatesMacApp.widget;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
 		B71324E87B5EC9B4ED1FE54C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -333,6 +506,24 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.levan.GELRatesApp.widget;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		B775A092A0AB958B90536B6C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				INFOPLIST_FILE = GELRatesMacWidget/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.levan.GELRatesMacApp.widget;
+				SDKROOT = macosx;
 			};
 			name = Release;
 		};
@@ -402,11 +593,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.9;
@@ -431,9 +620,45 @@
 			};
 			name = Debug;
 		};
+		E99BAA39E457057A7C532C35 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				INFOPLIST_FILE = GELRatesMacApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.levan.GELRatesMacApp;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		50E2F7DB12E413F836965C1C /* Build configuration list for PBXNativeTarget "GELRatesMacApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E99BAA39E457057A7C532C35 /* Debug */,
+				3EA8C55A118EDD99F231103A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		87D45A92854CB8D87C1B4091 /* Build configuration list for PBXNativeTarget "GELRatesMacWidget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8F17F10C20A1BE20B850A269 /* Debug */,
+				B775A092A0AB958B90536B6C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
 		A26405C0758887B3D52F0B1B /* Build configuration list for PBXNativeTarget "GELRatesApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

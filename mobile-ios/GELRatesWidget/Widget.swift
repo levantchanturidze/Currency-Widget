@@ -10,9 +10,12 @@ struct GELRatesEntryView: View {
     var body: some View {
         Group {
             switch family {
-            case .systemSmall:  SmallWidgetView(entry: entry)
-            case .systemLarge:  LargeWidgetView(entry: entry)
-            default:            MediumWidgetView(entry: entry)
+            case .systemSmall:
+                SmallWidgetView(entry: entry)
+            case .systemLarge, .systemExtraLarge:
+                LargeWidgetView(entry: entry)
+            default:
+                MediumWidgetView(entry: entry)
             }
         }
         .overlay(alignment: .topTrailing) {
@@ -31,6 +34,14 @@ struct GELRatesEntryView: View {
 struct GELRatesWidget: Widget {
     let kind = "GELRatesWidget"
 
+    var supportedFamilies: [WidgetFamily] {
+        #if os(macOS)
+        return [.systemSmall, .systemMedium, .systemLarge, .systemExtraLarge]
+        #else
+        return [.systemSmall, .systemMedium, .systemLarge]
+        #endif
+    }
+
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: RatesProvider()) { entry in
             GELRatesEntryView(entry: entry)
@@ -38,7 +49,7 @@ struct GELRatesWidget: Widget {
         }
         .configurationDisplayName("GEL Exchange Rates")
         .description("Live USD, EUR, and GBP exchange rates against Georgian Lari.")
-        .supportedFamilies([.systemSmall, .systemMedium, .systemLarge])
+        .supportedFamilies(supportedFamilies)
         .contentMarginsDisabled()
     }
 }

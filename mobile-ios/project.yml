@@ -1,8 +1,6 @@
 name: GELRates
 options:
   bundleIdPrefix: com.levan
-  deploymentTarget:
-    iOS: "17.0"
   createIntermediateGroups: true
 
 settings:
@@ -10,6 +8,8 @@ settings:
     SWIFT_VERSION: "5.9"
     DEVELOPMENT_TEAM: P3C867TH36
     CODE_SIGN_STYLE: Automatic
+
+# ── iOS ──────────────────────────────────────────────────────────────────────
 
 targets:
   GELRatesApp:
@@ -49,6 +49,47 @@ targets:
         CURRENT_PROJECT_VERSION: "1"
     info:
       path: GELRatesWidget/Info.plist
+      properties:
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.widgetkit-extension
+
+# ── macOS ─────────────────────────────────────────────────────────────────────
+
+  GELRatesMacApp:
+    type: application
+    platform: macOS
+    deploymentTarget: "14.0"
+    sources:
+      - path: GELRatesMacApp
+      - path: Shared
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.levan.GELRatesMacApp
+        MARKETING_VERSION: "1.0"
+        CURRENT_PROJECT_VERSION: "1"
+    dependencies:
+      - target: GELRatesMacWidget
+        embed: true
+    info:
+      path: GELRatesMacApp/Info.plist
+      properties:
+        CFBundleDisplayName: GEL Rates
+        NSPrincipalClass: NSApplication
+
+  GELRatesMacWidget:
+    type: app-extension
+    platform: macOS
+    deploymentTarget: "14.0"
+    sources:
+      - path: GELRatesWidget
+      - path: Shared
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.levan.GELRatesMacApp.widget
+        MARKETING_VERSION: "1.0"
+        CURRENT_PROJECT_VERSION: "1"
+    info:
+      path: GELRatesMacWidget/Info.plist
       properties:
         NSExtension:
           NSExtensionPointIdentifier: com.apple.widgetkit-extension
